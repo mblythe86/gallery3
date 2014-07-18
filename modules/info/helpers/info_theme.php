@@ -36,6 +36,11 @@ class info_theme_Core {
       }
       $results .= "</li>";
     }
+    if ($item->description) {
+      $results .= "<li>";
+      $results .= t("<br>%description", array("description" => $item->description));
+      $results .= "</li>";
+    }
     return $results;
   }
 }

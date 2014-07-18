@@ -1,3 +1,13 @@
+# Not acutally sure what this does...
+<IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  RewriteEngine On
+  #RewriteBase /gallery/
+  RewriteRule ^main.php(.*)$ index.php/g2/map?path=main.php$1 [R,L]
+  RewriteRule ^v/(.*)$ index.php/g2/map?path=v/$1  [R,L]
+  RewriteRule ^d/(.*)$ index.php/g2/map?path=d/$1  [R,L]
+</IfModule>
+
 # Set some reasonable defaults for PHP.  Most of these cannot be set
 # inside the script itself.  For hosts that don't have .htaccess
 # support but do support per-dir php.ini files, these settings are
@@ -70,13 +80,13 @@
 # want these changes to be persistent, talk to your system admin about
 # putting this block into your Apache config files.
 #
-# <IfModule mod_rewrite.c>
-#   Options +FollowSymLinks
-#   RewriteEngine On
-#   RewriteBase /
-#   RewriteCond %{REQUEST_FILENAME} !-f
-#   RewriteCond %{REQUEST_FILENAME} !-d
-#   RewriteRule ^(.*)$ index.php?kohana_uri=$1 [QSA,PT,L]
-#   RewriteRule ^$ index.php?kohana_uri=$1 [QSA,PT,L]
-#   RewriteRule ^index.php/(.*) $1 [QSA,R,L]
-# </IfModule>
+ <IfModule mod_rewrite.c>
+   Options +FollowSymLinks
+   RewriteEngine On
+   RewriteBase /gallery
+   RewriteCond %{REQUEST_FILENAME} !-f
+   RewriteCond %{REQUEST_FILENAME} !-d
+   RewriteRule ^(.*)$ index.php?kohana_uri=$1 [QSA,PT,L]
+   RewriteRule ^$ index.php?kohana_uri=$1 [QSA,PT,L]
+   RewriteRule ^index.php/(.*) $1 [QSA,R,L]
+ </IfModule>

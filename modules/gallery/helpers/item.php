@@ -216,6 +216,7 @@ class item_Core {
    * @return object Item_Model
    */
   static function find_by_path($path) {
+//    print "I got here!";
     $path = trim($path, "/");
 
     // The root path name is NULL not "", hence this workaround.
@@ -263,15 +264,30 @@ class item_Core {
     // In most cases, we'll have an exact match in the relative_url_cache item field.
     // but failing that, walk down the tree until we find it.  The fallback code will fix caches
     // as it goes, so it'll never be run frequently.
+//    print "find_by_relative_url(".$relative_url.")";
+//    return item::root();
     $item = ORM::factory("item")->where("relative_url_cache", "=", $relative_url)->find();
     if (!$item->loaded()) {
       $segments = explode("/", $relative_url);
-      foreach (ORM::factory("item")
-               ->where("slug", "=", end($segments))
-               ->where("level", "=", count($segments) + 1)
-               ->find_all() as $match) {
-        if ($match->relative_url() == $relative_url) {
-          $item = $match;
+      $temp = ORM::factory("item")->where("slug", "=", end($segments))->find_all();
+      if (count($temp) == 1) {
+//        print "only found 1 match";
+//        print "temp looks like this:";
+//        print_r $temp;
+        foreach($temp as $foo){
+//          $item = $foo;
+          url::redirect($foo->relative_url());
+        }
+      }
+      else{
+        foreach (ORM::factory("item")
+                 ->where("slug", "=", end($segments))
+                 ->where("level", "=", count($segments) + 1)
+                 ->find_all() as $match) {
+//            print "All matches?".$match->relative_url();
+          if ($match->relative_url() == $relative_url) {
+            $item = $match;
+          }
         }
       }
     }

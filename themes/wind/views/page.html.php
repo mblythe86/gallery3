@@ -121,7 +121,9 @@ dimensions : 200
 };
 })(jQuery);
 
-    $('#g-album-grid').smartColumns({ dimensions : 230 });
+    $(document).ready(function () {
+      $('#g-album-grid').smartColumns({ dimensions : 230 });
+    });
     $(window).resize(function () {
       $('#g-album-grid').smartColumns({ dimensions : 230 });
 //      smartColumns();

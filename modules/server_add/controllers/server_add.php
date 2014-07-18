@@ -246,7 +246,7 @@ class Server_Add_Controller extends Admin_Controller {
           $album->type = "album";
           $album->parent_id = $parent->id;
           $album->name = $name;
-          $album->title = $title;
+          $album->title = $name;
           $album->owner_id = $owner_id;
           $album->sort_order = $parent->sort_order;
           $album->sort_column = $parent->sort_column;

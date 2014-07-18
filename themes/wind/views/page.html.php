@@ -80,11 +80,58 @@
 
     <!-- LOOKING FOR YOUR JAVASCRIPT? It's all been combined into the link below -->
     <?= $theme->get_combined("script") ?>
+
+  <style> 
+    #custom-doc {
+  	/* margin:auto;text-align:left; /* leave unchanged */
+	/* width:92.30em;/* non-IE */
+	/* *width:90.08em;/* IE */
+	/* min-width:1200px;/* optional but recommended */
+        width:96%
+    } 
+  </style>
+  <script type="text/javascript">
+//    function smartColumns() {
+//      $("ul.g-album-grid").css({ 'width' : "100%"});
+//      var colWrap = $("ul.g-album-grid").width();
+//      var colNum = Math.floor(colWrap / 213);
+//      var colFixed = Math.floor(colWrap / colNum);
+//      $("ul.g-album-grid").css({ 'width' : colWrap});
+//      ${"ul.g-album-grid li").css({ 'width' : colFixed});
+//    }
+
+(function($) {
+$.fn.smartColumns = function(options) {
+var opts = $.extend({}, $.fn.smartColumns.defaults, options);
+
+$(this).css({ 'width' : "100%"})
+
+var colWrap = $(this).width();
+var colNum = Math.floor(colWrap / opts.dimensions);
+var colFixed = Math.floor(colWrap / colNum) - 20;
+
+$(this).css({ 'width' : colWrap})
+$(this).children('li').css({ 'width' : colFixed});
+
+return $(this);
+};
+
+$.fn.smartColumns.defaults = {
+dimensions : 200
+};
+})(jQuery);
+
+    $('#g-album-grid').smartColumns({ dimensions : 230 });
+    $(window).resize(function () {
+      $('#g-album-grid').smartColumns({ dimensions : 230 });
+//      smartColumns();
+    });
+  </script>
   </head>
 
   <body <?= $theme->body_attributes() ?>>
     <?= $theme->page_top() ?>
-    <div id="doc4" class="yui-t5 g-view">
+    <div id="custom-doc" class="yui-t5 g-view">
       <?= $theme->site_status() ?>
       <div id="g-header" class="ui-helper-clearfix">
         <div id="g-banner">

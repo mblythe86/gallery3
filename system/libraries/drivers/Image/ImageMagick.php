@@ -175,7 +175,7 @@ class Image_ImageMagick_Driver extends Image_Driver {
 		}
 
 		// Use "convert" to change the width and height
-		if ($error = exec(escapeshellcmd($this->dir.'convert'.$this->ext).' -background '.$this->background.' -flatten -resize '.$dim.' '.$this->cmd_image.' '.$this->cmd_image))
+		if ($error = exec(escapeshellcmd($this->dir.'convert'.$this->ext).' -background '.$this->background.' -flatten -sample 3000x3000 -resize '.$dim.' '.$this->cmd_image.' '.$this->cmd_image))
 		{
 			$this->errors[] = $error;
 			return FALSE;

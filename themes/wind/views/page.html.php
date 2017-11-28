@@ -81,7 +81,7 @@
     <!-- LOOKING FOR YOUR JAVASCRIPT? It's all been combined into the link below -->
     <?= $theme->get_combined("script") ?>
 
-  <style> 
+  <style type="text/css">
     #custom-doc {
   	/* margin:auto;text-align:left; /* leave unchanged */
 	/* width:92.30em;/* non-IE */
